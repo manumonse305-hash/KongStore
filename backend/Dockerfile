@@ -1,12 +1,17 @@
-FROM node:20-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
+# Instalar dependencias
 COPY package*.json ./
 RUN npm install
 
+# Copiar código y construir
 COPY . .
+RUN npm run build
 
+# Exponer puerto
 EXPOSE 3000
 
-CMD ["npm", "run", "start:dev"]
+# Iniciar la aplicación
+CMD ["node", "dist/main.js"]
