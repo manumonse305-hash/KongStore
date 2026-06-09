@@ -1,0 +1,192 @@
+/* Paleta de colores: Fondo oscuro premium, texto claro y acento neón */
+:root {
+    --primary: #6366f1; /* Morado moderno */
+    --primary-dark: #4f46e5;
+    --primary-light: #a855f7;
+    --bg-dark: #21325c; /* Azul muy oscuro */
+    --card-bg: #1e293b;
+    --header-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --danger: #7ec0e6;
+    --danger-dark: #223e65;
+    --border-light: rgba(255, 255, 255, 0.1);
+}
+
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #0f172a 100%);
+}
+
+.layout-content {
+    flex: 1;
+    margin-left: 280px;
+    transition: margin-left 0.3s ease;
+    width: calc(100% - 280px);
+}
+
+.layout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, var(--header-bg), #16213e);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.layout-header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.layout-welcome {
+    font-size: 30px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.layout-welcome span {
+    color: var(--primary);
+    font-weight: 600;
+    margin-left: 6px;
+}
+
+.layout-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, var(--primary), var(--danger-dark));
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(39, 161, 223, 0.3);
+}
+
+.layout-logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(68, 193, 239, 0.4);
+    background: linear-gradient(135deg, var(--danger-dark), #1c94b9);
+}
+
+.layout-main {
+    padding: 28px;
+}
+
+/* Cuando el menú está colapsado */
+.menu-collapsed + .layout-content {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+}
+
+/* Responsive - EL MENÚ SIEMPRE VISIBLE excepto en móviles pequeños */
+@media (max-width: 1024px) {
+    .layout-content {
+        margin-left: 280px;
+        width: calc(100% - 280px);
+    }
+    
+    .layout-main {
+        padding: 20px;
+    }
+    
+    .layout-header {
+        padding: 10px 20px;
+    }
+}
+
+/* Tablet (pantalla a la mitad) - TODO SE VE COMPLETO */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .layout-content {
+        margin-left: 280px;
+        width: calc(100% - 280px);
+    }
+    
+    /* Ajuste para que las tablas no se desborden */
+    .layout-main {
+        overflow-x: auto;
+    }
+    
+    /* Hacer que las tablas sean scrollables horizontalmente si es necesario */
+    .categorias-table,
+    .clientes-table,
+    .compras-table,
+    .productos-table,
+    .proveedores-table,
+    .servicios-table,
+    .usuarios-table,
+    .ventas-table,
+    .logs-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* Móviles pequeños - aquí sí se oculta el menú */
+@media (max-width: 640px) {
+    .layout-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .layout-main {
+        padding: 16px;
+    }
+    
+    .layout-header {
+        padding: 10px 16px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .layout-header-left {
+        gap: 12px;
+    }
+    
+    .layout-welcome {
+        font-size: 13px;
+    }
+    
+    .layout-logout-btn {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 480px) {
+    .layout-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .layout-header-left {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* Animación de entrada para el contenido */
+.layout-main {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

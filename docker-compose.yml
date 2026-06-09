@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: kong_mysql
+    restart: always
+    networks:
+      - kong_network
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: kong_store
+      MYSQL_USER: kong_user
+      MYSQL_PASSWORD: kong123
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  backend:
+    build: ./backend
+    container_name: kong_backend
+    restart: always
+    networks:
+      - kong_network
+    ports:
+      - "3000:3000"  # ← Asegurar que está así
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_NAME: kong_store
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:3000
+    container_name: kong_frontend
+    restart: always
+    networks:
+      - kong_network
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+networks:
+  kong_network:
+    driver: bridge
+
+volumes:
+  mysql_data:

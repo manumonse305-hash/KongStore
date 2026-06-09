@@ -1,0 +1,185 @@
+/* Paleta de colores: Fondo oscuro premium, texto claro y acento neón */
+:root {
+    --primary: #6366f1; /* Morado moderno */
+    --primary-dark: #4f46e5;
+    --primary-light: #a855f7;
+    --bg-dark: #0f172a; /* Azul muy oscuro */
+    --menu-bg: #0a0f1c; /* Fondo del menú más oscuro */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-light: rgba(255, 255, 255, 0.08);
+}
+
+.menu-nav {
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(180deg, var(--menu-bg) 0%, #050a15 100%);
+    color: var(--text-main);
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+    border-right: 1px solid var(--border-light);
+    transition: transform 0.3s ease;
+}
+
+/* Scrollbar personalizada */
+.menu-nav::-webkit-scrollbar {
+    width: 5px;
+}
+
+.menu-nav::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.menu-nav::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-radius: 3px;
+}
+
+.menu-nav::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+}
+
+.menu-logo {
+    padding: 24px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), transparent);
+}
+
+.menu-logo h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.menu-role-text {
+    font-size: 11px;
+    color: var(--primary);
+    margin-top: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin-bottom: 4px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 20px;
+    margin: 0 12px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 12px;
+}
+
+.menu-link:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.05));
+    color: white;
+    transform: translateX(4px);
+}
+
+.menu-link-active {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.menu-link-active:hover {
+    transform: translateX(0);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+.menu-icon {
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+}
+
+/* Responsive: El menú SIEMPRE visible en desktop y tablet */
+/* Solo se oculta en móviles muy pequeños (< 640px) */
+@media (max-width: 640px) {
+    .menu-nav {
+        transform: translateX(-100%);
+    }
+    
+    .menu-nav.menu-open {
+        transform: translateX(0);
+    }
+    
+    /* Botón para abrir menú en móvil (debes agregar este botón en tu HTML) */
+    .menu-toggle-btn {
+        display: block;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 101;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        border: none;
+        border-radius: 8px;
+        padding: 10px;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+    }
+}
+
+/* Para pantallas entre 641px y 1024px, el menú sigue visible */
+@media (min-width: 641px) {
+    .menu-nav {
+        transform: translateX(0) !important;
+    }
+    
+    .menu-toggle-btn {
+        display: none;
+    }
+}
+
+/* Ajuste para cuando el menú está colapsado (opcional) */
+.menu-collapsed {
+    width: 80px;
+}
+
+.menu-collapsed .menu-link span:not(.menu-icon) {
+    display: none;
+}
+
+.menu-collapsed .menu-link {
+    justify-content: center;
+    padding: 12px;
+}
+
+.menu-collapsed .menu-logo h2 {
+    font-size: 0;
+}
+
+.menu-collapsed .menu-logo h2::first-letter {
+    font-size: 24px;
+}
+
+.menu-collapsed .menu-role-text {
+    font-size: 8px;
+}

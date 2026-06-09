@@ -1,0 +1,419 @@
+/* Paleta de colores: Fondo oscuro premium, texto claro y acento neón */
+:root {
+    --primary: #6366f1; /* Morado moderno */
+    --bg-dark: #0f172a; /* Azul muy oscuro */
+    --card-bg: #1e293b; /* Fondo de contenedores */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+}
+
+.compras-container {
+    padding: 30px;
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    color: var(--text-main);
+    font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.compras-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.05));
+    padding: 20px 24px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.compras-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.compras-btn-primary {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--primary), #4f46e5);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    font-size: 14px;
+}
+
+.compras-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.compras-btn-add {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--success), #16a34a);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.compras-btn-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.compras-btn-view {
+    padding: 6px 16px;
+    background: linear-gradient(135deg, var(--primary), #4f46e5);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.compras-btn-view:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+}
+
+.compras-btn-delete-small {
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--danger), #dc2626);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.compras-btn-delete-small:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+}
+
+.compras-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.compras-table th,
+.compras-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.compras-table th:last-child,
+.compras-table td:last-child {
+    border-right: none;
+}
+
+.compras-table thead tr {
+    background-color: #334155;
+}
+
+.compras-table th {
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.compras-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.compras-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.compras-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.compras-table-small {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.compras-table-small th,
+.compras-table-small td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+}
+
+.compras-table-small th {
+    color: var(--text-muted);
+    font-weight: 600;
+    background-color: rgba(51, 65, 85, 0.5);
+}
+
+.compras-loading {
+    text-align: center;
+    padding: 60px;
+    font-size: 16px;
+    color: var(--text-muted);
+    background-color: var(--card-bg);
+    border-radius: 12px;
+}
+
+.compras-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.compras-modal {
+    background: linear-gradient(135deg, var(--card-bg), #0f172a);
+    padding: 28px;
+    border-radius: 20px;
+    width: 480px;
+    max-width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.compras-modal-large {
+    background: linear-gradient(135deg, var(--card-bg), #0f172a);
+    padding: 28px;
+    border-radius: 20px;
+    width: 800px;
+    max-width: 95%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Scroll personalizado para modal grande */
+.compras-modal-large::-webkit-scrollbar {
+    width: 8px;
+}
+
+.compras-modal-large::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+    border-radius: 10px;
+}
+
+.compras-modal-large::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.compras-modal h3,
+.compras-modal-large h3 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--primary), #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+
+.compras-form-group {
+    margin-bottom: 20px;
+}
+
+.compras-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.compras-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.compras-select {
+    flex: 2;
+    min-width: 180px;
+    padding: 10px 12px;
+    background-color: var(--bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+}
+
+.compras-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.compras-input-small {
+    width: 100px;
+    padding: 10px 12px;
+    background-color: var(--bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+}
+
+.compras-input-small:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.compras-total-container {
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.compras-modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.compras-btn-cancel {
+    padding: 10px 20px;
+    background-color: #334155;
+    color: var(--text-main);
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.compras-btn-cancel:hover {
+    background-color: #475569;
+}
+
+.compras-btn-save {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--primary), #4f46e5);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.compras-btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.compras-error {
+    color: var(--danger);
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid var(--danger);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.compras-subtitle {
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Ajustes responsivos para móviles */
+@media (max-width: 768px) {
+    .compras-container {
+        padding: 16px;
+    }
+    
+    .compras-header {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+    
+    .compras-modal-large {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .compras-modal {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .compras-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .compras-select {
+        width: 100%;
+    }
+    
+    .compras-input-small {
+        width: 100%;
+    }
+    
+    .compras-table th,
+    .compras-table td {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
