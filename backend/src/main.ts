@@ -13,7 +13,8 @@ async function bootstrap() {
       'http://localhost',
       'http://127.0.0.1:5173',
       'http://localhost:8080',
-      'https://kong-store-frontend.vercel.app', // ← ¡AGREGA TU FRONTEND EN VERCEL!
+      'https://kong-store-frontend-rbwmo32l0-kongstore.vercel.app', // 👈 URL de tu frontend
+    'https://kong-store-frontend.vercel.app',
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
