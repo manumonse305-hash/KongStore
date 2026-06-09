@@ -1,17 +1,21 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
-# Instalar dependencias
+# Copiar todo
 COPY package*.json ./
-RUN npm install
+COPY tsconfig*.json ./
+COPY nest-cli.json ./
+COPY src ./src
 
-# Copiar código y construir
-COPY . .
-RUN npm run build
+# Instalar dependencias y compilar
+RUN npm ci && \
+    npm run build && \
+    npm prune --production
 
-# Exponer puerto
-EXPOSE 3000
+# Limpiar código fuente (opcional, ahorra espacio)
+RUN rm -rf src
 
-# Iniciar la aplicación
+EXPOSE 10000
+
 CMD ["node", "dist/main.js"]
