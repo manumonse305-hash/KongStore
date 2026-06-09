@@ -3,16 +3,17 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-
   const app = await NestFactory.create(AppModule);
 
+  // ✅ Configura CORS con los orígenes correctos
   app.enableCors({
     origin: [
-      'http://localhost:5173',   // Vite
-      'http://localhost:3000',    // Backend
-      'http://localhost',          // Docker
+      'http://localhost:5173',
+      'http://localhost:3000',
+      'http://localhost',
       'http://127.0.0.1:5173',
-      'http://localhost:8080'
+      'http://localhost:8080',
+      'https://kong-store-frontend.vercel.app', // ← ¡AGREGA TU FRONTEND EN VERCEL!
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -26,7 +27,9 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(3000,'0.0.0.0');
-  console.log('Backend corriendo en http://localhost:3000');
+  // ✅ CORRECCIÓN: Usa el puerto que Render te asigna
+  const port = process.env.PORT || 3000;
+  await app.listen(port, '0.0.0.0');
+  console.log(`🚀 Backend corriendo en http://0.0.0.0:${port}`);
 }
 bootstrap();
